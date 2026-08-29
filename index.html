@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRACE Execution Authorization — Fellowship 2026</title>
+<title>TRACE Execution Authorization — AgentTrust Fellowship 2026</title>
 <style>
 :root{
   --bg:#07111f; --panel:#0d1b2d; --panel2:#10243a; --text:#eef5ff;
@@ -74,7 +74,7 @@ footer{padding:50px 0 70px;color:var(--muted)}
 <body>
 <nav>
   <div class="container navin">
-    <div class="brand">PARMANA <span>/</span> TRACE</div>
+    <div class="brand">TRACE <span>/</span> AGENTTRUST</div>
     <div class="navlinks">
       <a href="#problem">Problem</a><a href="#spec">Specification</a><a href="#formal">Formal Verification</a>
       <a href="#roadmap">6 Months</a><a href="#proof">Live Proof</a>
@@ -88,7 +88,7 @@ footer{padding:50px 0 70px;color:var(--muted)}
   <h1>TRACE Execution Authorization</h1>
   <p><strong>Specification &amp; Formal Verification</strong> extending TRACE from verifiable runtime evidence toward a precise, independently checkable binding between an authorized action and the execution evidence that proves what happened.</p>
   <div class="meta">
-    <div class="pill">Pavan Charak</div><div class="pill">Parmana Systems</div>
+    <div class="pill">Pavan Charak</div><div class="pill">Independent contributor</div>
     <div class="pill">RFC + Formal Verification + Reference Code</div>
   </div>
   <a class="cta" href="#problem">Read the proposal ↓</a>
@@ -122,39 +122,25 @@ footer{padding:50px 0 70px;color:var(--muted)}
 </div>
 </section>
 
-<section id="overlap">
+<section id="fit">
 <div class="container">
-  <div class="section-head"><h2>Where TRACE and Parmana meet</h2><p class="lead">The proposal is intentionally positioned as a standards contribution at the boundary between TRACE evidence and execution authority.</p></div>
-  <div class="grid2">
+  <div class="section-head"><h2>Why this contribution fits TRACE</h2><p class="lead">The proposal builds on TRACE's existing evidence and verification model and focuses narrowly on making authorization-to-action binding normative and independently checkable.</p></div>
+  <div class="grid">
     <div class="card">
-      <div class="number">TRACE · PUBLIC FOUNDATION</div>
-      <h3>Evidence and attestation</h3>
-      <ul>
-        <li>Policy binding through a policy bundle hash</li>
-        <li>Signed Trust Records with a confirmation key</li>
-        <li>Tool-call transcript evidence</li>
-        <li>A2A delegation linkage</li>
-        <li>Independent verification and conformance testing</li>
-        <li>Future-facing action-receipt direction</li>
-      </ul>
+      <div class="number">TRACE FOUNDATION</div>
+      <h3>Evidence already has structure</h3>
+      <p>TRACE defines signed Trust Records, policy binding, execution evidence, tool transcripts, delegation and verification mechanisms.</p>
     </div>
     <div class="card">
-      <div class="number">PARMANA · CONTRIBUTOR EXPERIENCE</div>
-      <h3>Execution authority</h3>
-      <ul>
-        <li>Policy-driven execution decisions</li>
-        <li>Deterministic verification and fail-closed behavior</li>
-        <li>Signed execution attestations</li>
-        <li>Replay protection through single-use authorization state</li>
-        <li>Content binding and named rejection outcomes</li>
-        <li>Cryptographic verification independent of the decision-maker</li>
-      </ul>
+      <div class="number">PROPOSED EXTENSION</div>
+      <h3>Make authorization explicit</h3>
+      <p>Define what an execution is authorized to do, bind that authorization to the relevant evidence, and specify how an independent verifier evaluates the relationship.</p>
     </div>
-  </div>
-  <div class="card" style="margin-top:20px">
-    <h3>The proposed bridge</h3>
-    <p style="font-size:18px;color:#dbe8f5">TRACE answers <strong>what ran, where, under which policy, and what tools were invoked.</strong> The proposed authorization layer adds the normative question: <strong>what was this execution actually authorized to do?</strong></p>
-    <p class="small">This is complementary to TRACE rather than a replacement for its attestation, evidence, hardware-rooted trust, or conformance model.</p>
+    <div class="card">
+      <div class="number">STANDARDS OUTCOME</div>
+      <h3>Interoperable verification</h3>
+      <p>Provide a normative record, formal properties and reference implementation that other TRACE implementers can independently reproduce and verify.</p>
+    </div>
   </div>
 </div>
 </section>
@@ -260,20 +246,16 @@ footer{padding:50px 0 70px;color:var(--muted)}
 
 <section id="proof">
 <div class="container">
-  <div class="section-head"><h2>Live proof · Parmana</h2><p class="lead">Parmana provides the contributor's implementation experience: a working execution-authority architecture that can be used to test and refine the proposed authorization semantics.</p></div>
+  <div class="section-head"><h2>Reference implementation</h2><p class="lead">The implementation is evidence for the specification—not the product being proposed. Its purpose is to make the authorization semantics executable, testable and independently reproducible.</p></div>
   <div class="grid">
-    <div class="card"><h3>Cryptographic authorization</h3><p>Signed authorization records using Ed25519 + ML-DSA-65.</p></div>
-    <div class="card"><h3>Independent verification</h3><p>Verification does not require trusting the signer’s runtime.</p></div>
-    <div class="card"><h3>Security lifecycle</h3><p>Replay, tampering and expiry-bypass are explicitly rejected.</p></div>
+    <div class="card"><h3>Generate</h3><p>Create a canonical AuthorizationRecord with policy, content, validity and nonce bindings.</p></div>
+    <div class="card"><h3>Verify</h3><p>Independently validate signature, policy digest, content hash, time validity and nonce state.</p></div>
+    <div class="card"><h3>Conform</h3><p>Publish deterministic examples and test vectors so independent implementations can compare outcomes.</p></div>
   </div>
   <div class="card" style="margin-top:20px">
-    <h3>Implementation claim</h3>
-    <p style="font-size:20px;color:#dbe8f5">“This RFC work is standardizing what already works in Parmana.”</p>
-    <p class="small">The supplied Parmana proposal reports 208 passing tests across its authorization and security-property coverage. Those results are presented as implementation evidence, not as TRACE conformance until independently evaluated.</p>
-    <div class="meta">
-      <a class="pill" href="https://parmana.fly.dev" target="_blank" rel="noopener">Live: parmana.fly.dev ↗</a>
-      <a class="pill" href="https://github.com/pavancharak" target="_blank" rel="noopener">GitHub: pavancharak ↗</a>
-    </div>
+    <h3>Standards-first principle</h3>
+    <p style="font-size:20px;color:#dbe8f5">The reference implementation exists to prove that the proposed TRACE authorization model is implementable and unambiguous.</p>
+    <p class="small">Implementation priorities will be finalized after discussion with the TRACE/AgentTrust community.</p>
   </div>
 </div>
 </section>
@@ -316,7 +298,7 @@ footer{padding:50px 0 70px;color:var(--muted)}
 <footer>
 <div class="container footerbox">
   <div><strong style="color:#eef5ff">AgentTrust Fellowship 2026</strong><br><span class="small">TRACE Execution Authorization · Specification &amp; Formal Verification</span></div>
-  <div class="small">Pavan Charak · Parmana Systems<br><a href="https://parmana.fly.dev">parmana.fly.dev</a> · <a href="https://github.com/pavancharak">github.com/pavancharak</a></div>
+  <div class="small">Pavan Charak · Independent contributor<br><a href="https://github.com/pavancharak">GitHub ↗</a></div>
 </div>
 </footer>
 </body>
