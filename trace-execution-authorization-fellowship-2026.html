@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRACE Execution Authorization — Fellowship 2026</title>
+<style>
+:root{
+  --bg:#07111f; --panel:#0d1b2d; --panel2:#10243a; --text:#eef5ff;
+  --muted:#9fb2c8; --line:#1f3a55; --accent:#65d6c6; --accent2:#79a7ff;
+  --danger:#ff8c8c; --gold:#f3c969;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:radial-gradient(circle at 80% 0%,#12304b 0,#07111f 38%,#050b14 100%);
+  color:var(--text);line-height:1.55;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{width:min(1160px,92%);margin:auto}
+nav{position:sticky;top:0;z-index:20;background:rgba(5,11,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.navin{height:66px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:.08em}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:22px;font-size:14px;color:var(--muted)}
+.hero{padding:105px 0 85px;position:relative;overflow:hidden}
+.eyebrow{display:inline-flex;gap:9px;align-items:center;border:1px solid #28516a;background:#0b2133;padding:7px 12px;border-radius:999px;color:var(--accent);font-size:13px;font-weight:700}
+h1{font-size:clamp(42px,7vw,78px);line-height:1.02;letter-spacing:-.045em;margin:24px 0 22px;max-width:900px}
+.hero p{font-size:20px;color:var(--muted);max-width:780px}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.pill{border:1px solid var(--line);background:rgba(13,27,45,.72);padding:9px 13px;border-radius:8px;color:#cbd9e8;font-size:14px}
+.cta{display:inline-flex;margin-top:30px;padding:13px 18px;border-radius:9px;background:var(--accent);color:#04110f;font-weight:800}
+section{padding:78px 0;border-top:1px solid rgba(31,58,85,.65)}
+.section-head{display:flex;justify-content:space-between;gap:35px;align-items:end;margin-bottom:35px}
+h2{font-size:36px;letter-spacing:-.03em;margin:0}
+.lead{color:var(--muted);max-width:650px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.card{background:linear-gradient(145deg,rgba(16,36,58,.95),rgba(10,22,37,.95));border:1px solid var(--line);border-radius:14px;padding:25px}
+.card h3{margin:0 0 10px;font-size:19px}
+.card p{margin:0;color:var(--muted)}
+.number{font-size:12px;color:var(--accent);font-weight:900;letter-spacing:.12em;margin-bottom:13px}
+.quote{border-left:3px solid var(--accent);padding:18px 22px;background:#091827;color:#dbe8f5;border-radius:0 10px 10px 0;font-size:21px}
+.timeline{position:relative}
+.phase{display:grid;grid-template-columns:105px 1fr;gap:22px;padding:28px 0;border-bottom:1px solid var(--line)}
+.phase:last-child{border-bottom:0}
+.month{color:var(--accent);font-weight:900}
+.phase h3{margin:0 0 9px;font-size:22px}
+.phase p{color:var(--muted);margin:0 0 14px}
+ul{padding-left:21px;color:var(--muted)}
+li{margin:7px 0}
+.success{margin-top:18px;padding:13px 16px;border:1px solid #245548;background:#0a211f;border-radius:9px;color:#b9e9df}
+.fail{color:#aebdcd}
+.code{background:#050b13;border:1px solid var(--line);border-radius:12px;padding:18px;overflow:auto;font-family:"SFMono-Regular",Consolas,monospace;font-size:13px;color:#cce2f7}
+.schema{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.field{padding:13px 15px;background:#091827;border:1px solid var(--line);border-radius:9px}
+.field b{color:var(--text)}
+.badge{float:right;color:var(--accent);font-size:11px}
+table{width:100%;border-collapse:collapse;background:#091827;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:15px;border-bottom:1px solid var(--line)}
+th{color:#dbe8f5;font-size:13px}td{color:var(--muted)}
+tr:last-child td{border-bottom:0}
+footer{padding:50px 0 70px;color:var(--muted)}
+.footerbox{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.small{font-size:13px}
+@media(max-width:800px){
+ .navlinks{display:none}.hero{padding-top:70px}.grid,.grid2,.schema{grid-template-columns:1fr}
+ .phase{grid-template-columns:1fr;gap:4px}.section-head{display:block}h2{margin-bottom:12px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="container navin">
+    <div class="brand">PARMANA <span>/</span> TRACE</div>
+    <div class="navlinks">
+      <a href="#problem">Problem</a><a href="#spec">Specification</a><a href="#formal">Formal Verification</a>
+      <a href="#roadmap">6 Months</a><a href="#proof">Live Proof</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+<div class="container">
+  <div class="eyebrow">AGENTRUST FELLOWSHIP 2026 · TECHNICAL PROPOSAL</div>
+  <h1>TRACE Execution Authorization</h1>
+  <p><strong>Specification &amp; Formal Verification</strong> — extending TRACE from verifiable runtime evidence toward a precise, independently checkable binding between an authorized action and the execution evidence that proves what happened.</p>
+  <div class="meta">
+    <div class="pill">Pavan Charak</div><div class="pill">Parmana Systems</div>
+    <div class="pill">RFC + Formal Verification + Reference Code</div>
+  </div>
+  <a class="cta" href="#problem">Read the proposal ↓</a>
+</div>
+</header>
+
+<main>
+<section id="problem">
+<div class="container">
+  <div class="section-head">
+    <h2>The standards gap</h2>
+    <p class="lead">TRACE v0.2 already binds policy, runtime, data class, tool transcripts, identity and signatures into a verifiable Trust Record. Its public specification also identifies action receipts as a future profile direction. The fellowship contribution should therefore be precise: formalize the authorization-to-action binding rather than claim TRACE lacks evidence or signatures.</p>
+  </div>
+  <div class="quote">“Given a valid authorization, can an independent verifier prove that the executed action matched exactly what was authorized — and reject replay, tampering, expiry and identity mismatch?”</div>
+  <div class="grid" style="margin-top:25px">
+    <div class="card"><div class="number">01 · ALREADY EXISTS</div><h3>TRACE evidence foundation</h3><p>TRACE v0.2 defines a signed Trust Record covering policy, runtime, model, data class, tool transcript, delegation and verification-related claims.</p></div>
+    <div class="card"><div class="number">02 · CONTRIBUTION</div><h3>Authorization semantics</h3><p>Define a normative authorization object and verification algorithm that binds an authorized action/content to the corresponding TRACE execution evidence.</p></div>
+    <div class="card"><div class="number">03 · OUTCOME</div><h3>Independent verification</h3><p>Give enterprises, auditors and standards implementers a deterministic way to answer whether execution was within the authorization that governed it.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="solution">
+<div class="container">
+  <div class="section-head"><h2>The proposal</h2><p class="lead">A deliberately narrow extension to the TRACE evidence model: define authorization semantics, prove the security properties, and demonstrate interoperable verification.</p></div>
+  <div class="grid">
+    <div class="card"><div class="number">01</div><h3>Define authorization</h3><p>Specify AuthorizationRecord, its schema, semantics, lifecycle and normative processing points.</p></div>
+    <div class="card"><div class="number">02</div><h3>Prove authorization</h3><p>Express core security properties as a formal state machine and machine-check them.</p></div>
+    <div class="card"><div class="number">03</div><h3>Demonstrate authorization</h3><p>Provide reference code and conformance evidence that independent implementations can verify.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="overlap">
+<div class="container">
+  <div class="section-head"><h2>Where TRACE and Parmana meet</h2><p class="lead">The proposal is intentionally positioned as a standards contribution at the boundary between TRACE evidence and execution authority.</p></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="number">TRACE · PUBLIC FOUNDATION</div>
+      <h3>Evidence and attestation</h3>
+      <ul>
+        <li>Policy binding through a policy bundle hash</li>
+        <li>Signed Trust Records with a confirmation key</li>
+        <li>Tool-call transcript evidence</li>
+        <li>A2A delegation linkage</li>
+        <li>Independent verification and conformance testing</li>
+        <li>Future-facing action-receipt direction</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="number">PARMANA · CONTRIBUTOR EXPERIENCE</div>
+      <h3>Execution authority</h3>
+      <ul>
+        <li>Policy-driven execution decisions</li>
+        <li>Deterministic verification and fail-closed behavior</li>
+        <li>Signed execution attestations</li>
+        <li>Replay protection through single-use authorization state</li>
+        <li>Content binding and named rejection outcomes</li>
+        <li>Cryptographic verification independent of the decision-maker</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>The proposed bridge</h3>
+    <p style="font-size:18px;color:#dbe8f5">TRACE answers <strong>what ran, where, under which policy, and what tools were invoked.</strong> The proposed authorization layer adds the normative question: <strong>what was this execution actually authorized to do?</strong></p>
+    <p class="small">This is complementary to TRACE rather than a replacement for its attestation, evidence, hardware-rooted trust, or conformance model.</p>
+  </div>
+</div>
+</section>
+
+<section id="spec">
+<div class="container">
+  <div class="section-head"><h2>RFC 001 · AuthorizationRecord</h2><p class="lead">Month 1–2: define the normative authorization object that can be referenced by, and cryptographically bound to, a TRACE execution record.</p></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Proposed authorization schema</h3>
+      <div class="schema">
+        <div class="field"><b>authorizationId</b><span class="badge">ID</span></div>
+        <div class="field"><b>policyDigest</b><span class="badge">HASH</span></div>
+        <div class="field"><b>contentHash</b><span class="badge">HASH</span></div>
+        <div class="field"><b>issuedAt</b><span class="badge">TIME</span></div>
+        <div class="field"><b>expiresAt</b><span class="badge">TIME</span></div>
+        <div class="field"><b>nonce</b><span class="badge">UNIQUE</span></div>
+        <div class="field"><b>signature</b><span class="badge">SIG</span></div>
+        <div class="field"><b>signatureAlgorithm</b><span class="badge">ALG</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Normative examples</h3>
+      <ul>
+        <li>Accept valid authorization</li>
+        <li>Reject replay</li>
+        <li>Reject tampered content</li>
+        <li>Reject expired authorization</li>
+        <li>Reject key mismatch</li>
+      </ul>
+      <p class="success">Success: RFC accepted through the TRACE standards process · 50+ validation cases · 2+ independent implementations.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="formal">
+<div class="container">
+  <div class="section-head"><h2>RFC 002 · Formal verification</h2><p class="lead">Month 2–4: turn the proposed authorization semantics into machine-checkable security properties that complement TRACE's existing verification model.</p></div>
+  <div class="grid">
+    <div class="card"><div class="number">PROPERTY 01</div><h3>No-replay</h3><p>An authorization carrying nonce N cannot be successfully consumed twice.</p></div>
+    <div class="card"><div class="number">PROPERTY 02</div><h3>No-tamper</h3><p>Authorization bound to content hash C cannot authorize content C′ where C′ ≠ C.</p></div>
+    <div class="card"><div class="number">PROPERTY 03</div><h3>No-expiry-bypass</h3><p>An authorization expiring at T cannot verify successfully at T′ &gt; T.</p></div>
+    <div class="card"><div class="number">PROPERTY 04</div><h3>Deterministic rejection</h3><p>Every verification failure maps to a named, deterministic rejection reason.</p></div>
+    <div class="card"><div class="number">PROPERTY 05</div><h3>Signature binding</h3><p>An authorization signed by key K cannot be verified using a different key K′.</p></div>
+    <div class="card"><div class="number">FORMAL MODEL</div><h3>TLA+ state machine</h3><p>Model lifecycle, verification and consumption states; peer-review the machine-checked properties.</p></div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Verification surface</h3>
+    <div class="code">AuthorizationRecord
+        │
+        ├── signature valid?
+        ├── policyDigest matches?
+        ├── contentHash matches?
+        ├── issuedAt / expiresAt valid?
+        ├── nonce unused?
+        └── verification outcome = named result
+                    │
+                    ▼
+              EXECUTE / REJECT</div>
+    <p class="success">Success: peer-reviewed TLA+ model · 50+ property tests · published conformance evidence · independent implementations agree on outcomes.</p>
+  </div>
+</div>
+</section>
+
+<section id="roadmap">
+<div class="container">
+  <div class="section-head"><h2>Focused 6-month plan</h2><p class="lead">A proposed sequence for discussion with the TRACE/AgentTrust community; implementation priorities will be finalized collaboratively.</p></div>
+  <div class="card timeline">
+    <div class="phase"><div class="month">M1–2</div><div><h3>TRACE Authorization Specification</h3><p>Publish RFC 001 defining AuthorizationRecord, schema, examples, compatibility and integration points.</p><ul><li>JSON schema</li><li>5 normative examples</li><li>50+ schema tests</li><li>2+ implementations</li></ul></div></div>
+    <div class="phase"><div class="month">M2–4</div><div><h3>Formal Verification &amp; Security Properties</h3><p>Publish RFC 002 with a TLA+ authorization model and machine-checkable security properties.</p><ul><li>5 core properties</li><li>50+ property tests</li><li>Peer review</li><li>Conformance report</li></ul></div></div>
+    <div class="phase"><div class="month">M4–6</div><div><h3>Reference Implementation &amp; TRACE v0.3</h3><p>Release TypeScript/Python reference code and integrate AuthorizationRecord into TRACE v0.3.</p><ul><li>Signing + hashing + nonce lifecycle</li><li>Independent verification</li><li>Named edge-case rejection</li><li>Live reference demonstration</li></ul></div></div>
+  </div>
+</div>
+</section>
+
+<section id="scope">
+<div class="container">
+  <div class="section-head"><h2>What stays out</h2><p class="lead">The contribution is stronger because it does not attempt to solve every adjacent problem.</p></div>
+  <div class="grid2">
+    <div class="card">
+      <h3>In scope</h3>
+      <ul>
+        <li>TRACE AuthorizationRecord specification</li>
+        <li>Formal security properties and proofs</li>
+        <li>Reference implementation</li>
+        <li>TRACE v0.3 authorization layer</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Not required for this contribution</h3>
+      <ul>
+        <li class="fail">A full AGT policy → authorization mapping framework</li>
+        <li class="fail">A new confidential-compute architecture</li>
+        <li class="fail">Policy-to-authorization developer tooling</li>
+        <li class="fail">A broad product or commercialization program</li>
+      </ul>
+      <p class="small">These can be discussed with the community where they materially affect interoperability or the TRACE roadmap.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="proof">
+<div class="container">
+  <div class="section-head"><h2>Live proof · Parmana</h2><p class="lead">Parmana provides the contributor's implementation experience: a working execution-authority architecture that can be used to test and refine the proposed authorization semantics.</p></div>
+  <div class="grid">
+    <div class="card"><h3>Cryptographic authorization</h3><p>Signed authorization records using Ed25519 + ML-DSA-65.</p></div>
+    <div class="card"><h3>Independent verification</h3><p>Verification does not require trusting the signer’s runtime.</p></div>
+    <div class="card"><h3>Security lifecycle</h3><p>Replay, tampering and expiry-bypass are explicitly rejected.</p></div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Implementation claim</h3>
+    <p style="font-size:20px;color:#dbe8f5">“This RFC work is standardizing what already works in Parmana.”</p>
+    <p class="small">The supplied Parmana proposal reports 208 passing tests across its authorization and security-property coverage. Those results are presented as implementation evidence, not as TRACE conformance until independently evaluated.</p>
+    <div class="meta">
+      <a class="pill" href="https://parmana.fly.dev" target="_blank" rel="noopener">Live: parmana.fly.dev ↗</a>
+      <a class="pill" href="https://github.com/pavancharak" target="_blank" rel="noopener">GitHub: pavancharak ↗</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="metrics">
+<div class="container">
+  <div class="section-head"><h2>Six-month success metrics</h2><p class="lead">Concrete outputs, independently checkable.</p></div>
+  <table>
+    <thead><tr><th>Milestone</th><th>Deliverable</th><th>Success criterion</th></tr></thead>
+    <tbody>
+      <tr><td>Month 1–2</td><td>RFC 001 · AuthorizationRecord Spec</td><td>Approved · 2+ implementations</td></tr>
+      <tr><td>Month 2–4</td><td>RFC 002 · Formal Properties + Proofs</td><td>Peer-reviewed · 50+ tests passing</td></tr>
+      <tr><td>Month 4–6</td><td>TRACE v0.3 + Reference Code</td><td>Published · live demo · external verification</td></tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<section id="sources">
+<div class="container">
+  <div class="section-head"><h2>Public technical basis</h2><p class="lead">The proposal is grounded in the current public TRACE v0.2 specification and roadmap, not assumptions about an unreleased version.</p></div>
+  <div class="grid">
+    <div class="card"><h3>TRACE v0.2</h3><p>Public specification defining the Trust Record, policy binding, tool transcript, delegation, signatures and verification model.</p><p class="small"><a href="https://github.com/agentrust-io/trace-spec/blob/main/spec/trace-v0.2.md" target="_blank" rel="noopener">Read specification ↗</a></p></div>
+    <div class="card"><h3>TRACE action receipts</h3><p>The public specification describes a future action-receipt profile direction and outlines receipt digest, signature, ordering and session-binding verification requirements.</p><p class="small"><a href="https://trace.agentrust-io.com/" target="_blank" rel="noopener">TRACE project ↗</a></p></div>
+    <div class="card"><h3>TRACE roadmap</h3><p>The current roadmap identifies v0.3 as the next phase and v1.0 as the later standard, making community alignment on the authorization contribution important.</p><p class="small"><a href="https://trace.agentrust-io.com/ROADMAP/" target="_blank" rel="noopener">Roadmap ↗</a></p></div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <div class="quote">
+    TRACE already provides a strong evidence and attestation foundation. This six-month contribution proposes to make the authorization boundary equally precise: specify AuthorizationRecord, formally verify its security properties, and demonstrate interoperable binding to TRACE execution evidence.
+    <br><br><strong>The core contribution: a normative authorization layer for TRACE, backed by formal verification and reference implementation.</strong>
+  </div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container footerbox">
+  <div><strong style="color:#eef5ff">AgentTrust Fellowship 2026</strong><br><span class="small">TRACE Execution Authorization · Specification &amp; Formal Verification</span></div>
+  <div class="small">Pavan Charak · Parmana Systems<br><a href="https://parmana.fly.dev">parmana.fly.dev</a> · <a href="https://github.com/pavancharak">github.com/pavancharak</a></div>
+</div>
+</footer>
+</body>
+</html>
